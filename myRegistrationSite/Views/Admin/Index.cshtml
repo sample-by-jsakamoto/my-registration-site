@@ -1,0 +1,63 @@
+﻿@model IEnumerable<myRegistrationSite.Models.Attendee>
+
+@{
+    ViewBag.Title = "申し込み一覧";
+}
+
+<h2>申し込み一覧</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.beLT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.beParty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateAt)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.beLT)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.beParty)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateAt)
+            </td>
+        </tr>
+    }
+</table>
+
+<p>
+    @using (Html.BeginForm(actionName: "ClearAll", controllerName: "Admin"))
+    {
+        <input type="submit" value="すべて削除" class="btn btn-default" id="btn-clear-all" />
+    }
+</p>
+
+@section scripts{
+    <script>
+        $('#btn-clear-all').click(function (e) {
+            return confirm('すべて削除してもよろしいですか?');
+        });
+    </script>
+}
